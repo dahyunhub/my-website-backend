@@ -35,3 +35,17 @@ out/
 
 ### VS Code ###
 .vscode/
+
+*.jar
+
+# 빌드 출력 제외
+/target/
+/build/
+
+# IDE
+*.iml
+.idea/
+*.class
+
+# OS
+.DS_Store
