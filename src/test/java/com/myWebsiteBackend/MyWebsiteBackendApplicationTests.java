@@ -1,4 +1,4 @@
-package com.mywebsite.my_website_backend;
+package com.myWebsiteBackend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
