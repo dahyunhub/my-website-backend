@@ -19,12 +19,20 @@ public class CommentService {
     private final UserRepository userRepository;
 
     // 방명록 작성
-    public void createComment(CommentCreateRequestDTO request) {
+    public CommentResponseDTO createComment(CommentCreateRequestDTO request) {
         User user = userRepository.findById(request.getUserId()).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 USER"));
 
         Comment comment = new Comment(user, request.getContent());
 
-commentRepository.save(comment);
+        Comment savedComment = commentRepository.save(comment);
+
+        return new CommentResponseDTO(
+                savedComment.getCommentId(),
+                savedComment.getUser().getUserId(),
+                savedComment.getUser().getRole(),
+                savedComment.getContent(),
+                savedComment.getCreatedAt()
+        );
     }
 
     // 방명록 목록 조회
@@ -32,6 +40,7 @@ commentRepository.save(comment);
         return commentRepository.findAll().stream()
                 .map(comment -> new CommentResponseDTO(
                         comment.getCommentId(),
+                        comment.getUser().getUserId(),
                         comment.getUser().getRole(),
                         comment.getContent(),
                         comment.getCreatedAt()

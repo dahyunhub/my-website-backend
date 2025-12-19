@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class CommentResponseDTO {
     private Long commentId;
+    private Long userId;
     private String role;
     private String content;
     private LocalDateTime createdAt;
